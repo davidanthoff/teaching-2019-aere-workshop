@@ -27,6 +27,18 @@ git-tree-sha1 = "c7361ce8a2129f20b0e05a89f7070820cfed6648"
 uuid = "b99e7846-7c00-51b0-8f62-c81ae34c0232"
 version = "0.5.4"
 
+[[BlackBoxOptim]]
+deps = ["CPUTime", "Compat", "Distributed", "Distributions", "LinearAlgebra", "Logging", "Pkg", "Printf", "Random", "SHA", "Serialization", "Statistics", "StatsBase", "Test"]
+git-tree-sha1 = "1303f4b5d3c84f27a803f53646d68fa1616771b2"
+uuid = "a134a8b2-14d6-55f6-9291-3336d3ab0209"
+version = "0.4.0"
+
+[[CPUTime]]
+deps = ["Compat"]
+git-tree-sha1 = "bdaf1b7ecf8eb6fb3843a1b0d3fccc5f727a49fd"
+uuid = "a9c8d775-2e2e-55fc-8582-045d282d599e"
+version = "0.1.0"
+
 [[CSTParser]]
 deps = ["Tokenize"]
 git-tree-sha1 = "376a39f1862000442011390f1edf5e7f4dcc7142"
