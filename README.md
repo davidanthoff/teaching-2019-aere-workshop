@@ -10,7 +10,7 @@ You can find all the slides that we can share for this workshop in the `slides` 
 
 You can run all the code from the hands-on session in the cloud by clicking on the following link:
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/davidanthoff/teaching-2019-aere-workshop.git/v0.1.0)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/davidanthoff/teaching-2019-aere-workshop.git/v0.1.1)
 
 The folder `src` contains Jupyter notebooks with the full script that I used during the workshop.
 
