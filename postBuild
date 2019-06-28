@@ -1,0 +1,39 @@
+#!/usr/bin/env julia
+
+# Phase 1: Create a new shared env that contains PackageCompiler,
+# and then add that env to the stack of env so that PackageCompiler
+# is available, even if the user env is active.
+
+using Pkg
+
+Pkg.activate("pkgcompilerenv", shared=true)
+# Pkg.add("PackageCompiler")
+pkg"add PackageCompiler#sd-notomls"
+
+insert!(LOAD_PATH, 2, "@pkgcompilerenv")
+
+# Phase 2: Compile the custom sysimg
+
+# We want to do this with the user env active
+Pkg.activate(".")
+
+using PackageCompiler
+
+# Our LOAD_PATH modifications are not passed through to client processes
+# by PackageCompiler, so we use this hack to make sure our LOAD_PATH
+# is also used by the client processes
+ENV["JULIA_LOAD_PATH"] = "@:@pkgcompilerenv:@v#.#:@stdlib"
+
+# PackageCompiler also ignores the active env. We use this hack to force
+# the client processes to run with the user env active.
+# This doesn't actually seem to work, though...
+ENV["JULIA_PROJECT"] = @__DIR__
+
+new_sysimg_path, old_sysimg_path = compile_incremental(joinpath(@__DIR__, "src", "userimg.jl"))
+
+# Phase 3: Modify the Julia kernel spec so that it loads our
+# custom sysimg.
+
+using IJulia
+
+installkernel("Julia", "--project=$(@__DIR__)", "-J", new_sysimg_path)
